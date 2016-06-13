@@ -34,3 +34,12 @@
 .game_block {
 	border: 1px solid;
 }
+
+#imageToCrop {
+	width: 500px;
+	height: 500px;
+	margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    /*clip: rect(0px,250px,250px,0px);*/
+}

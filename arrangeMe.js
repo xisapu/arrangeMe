@@ -1,14 +1,14 @@
 var actions_history = [];
+var image_src = "http://fc00.deviantart.net/fs70/f/2013/359/b/7/anime_quote__138_by_anime_quotes-d6zbr3w.jpg";
 
 
 function setup(number_of_blocks_in_side) {
-	buildGameBoard(number_of_blocks_in_side);
+	buildGameBoardWithImage(number_of_blocks_in_side);
 	scrumbleBoard();
-	actions_history = [];
 }
 
 
-function buildGameBoard(number_of_blocks_in_side) {
+function buildGameBoardWithNumbers(number_of_blocks_in_side) {
 	var table = document.getElementById("gameBoard");
 	var counter = number_of_blocks_in_side * number_of_blocks_in_side;
 	for (var i = 0; i < number_of_blocks_in_side; i++) {
@@ -21,6 +21,38 @@ function buildGameBoard(number_of_blocks_in_side) {
 			cell.onclick = function() {moveBlock(this)}
 			counter--;
 		}
+	}
+	table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1].textContent = "";
+}
+
+
+function buildGameBoardWithImage(number_of_blocks_in_side) {
+	var image_side_size = 500;
+	var block_side_size = image_side_size / number_of_blocks_in_side;
+	var FromX = 0;
+	var FromY = 0;
+	var ToX = block_side_size;
+	var ToY = block_side_size;
+	var table = document.getElementById("gameBoard");
+	var counter = number_of_blocks_in_side * number_of_blocks_in_side;
+	for (var i = 0; i < number_of_blocks_in_side; i++) {
+		var row = table.insertRow(0);
+		var FromX = 0;
+		var ToX = block_side_size;
+		for (var j = 0; j < number_of_blocks_in_side; j++) {
+			var cell = row.insertCell(0);
+			cell.className = "game_block";
+			cell.id = counter;
+			cell.textContent = "<img id=i'" + counter + "' class='imageToCrop' src='" + image_src + "'";
+			var cellImage = document.getElementById("i" + counter);
+			cellImage.style.clip = "rect('" + FromY + "px', " + ToX + "px, " + ToY + "px, " + FromX + "px)";
+			cell.onclick = function() {moveBlock(this)};
+			FromX += block_side_size;
+			ToX += block_side_size;
+			counter--;
+		}
+		FromY += block_side_size;
+		ToY += block_side_size;
 	}
 	table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1].textContent = "";
 }
@@ -163,6 +195,7 @@ function scrumbleBoard() {
 			}
 		}
 	}
+	actions_history = [];
 }
 
 
