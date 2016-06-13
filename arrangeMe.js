@@ -1,6 +1,10 @@
+var actions_history = [];
+
+
 function setup(number_of_blocks_in_side) {
 	buildGameBoard(number_of_blocks_in_side);
 	scrumbleBoard();
+	actions_history = [];
 }
 
 
@@ -73,6 +77,7 @@ function moveBlock(cellObject) {
 	if (empty_coupled_block_id) {
 		var illegalMove = document.getElementById("illegalMove");
 		illegalMove.style.display = "none";
+		actions_history.push(empty_coupled_block_id)
 		var empty_coupled_block = document.getElementById(empty_coupled_block_id);
 		empty_coupled_block.textContent = cellObject.textContent;
 		cellObject.textContent = "";
@@ -157,5 +162,14 @@ function scrumbleBoard() {
 				moveBlock(right_block);
 			}
 		}
+	}
+}
+
+
+function undoAction() {
+	if (actions_history.length > 0) {
+		var block = document.getElementById(actions_history.pop());
+		moveBlock(block);
+		actions_history.pop()
 	}
 }

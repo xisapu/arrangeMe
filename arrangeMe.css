@@ -20,13 +20,13 @@
 }
 
 #winMessage {
-	font-size: 10em;
+	font-size: 100px;
 	font-family: Impact;
-	color: red;
+	color: blue;
 }
 
 #illegalMove {
-	font-size: 10em;
+	font-size: 100px;
 	font-family: Impact;
 	color: red;
 }
