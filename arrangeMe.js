@@ -129,7 +129,7 @@ function checkIfBoardIsArranged() {
 	var number_of_cells = row_length * row_length;
 	for (var i = 1; i < number_of_cells; i++) {
 		var cell = document.getElementById(i);
-		if (cell.id !== cell.value) {
+		if (parseInt(cell.id) !== cell.value) {
 			return false;
 		}
 	}
