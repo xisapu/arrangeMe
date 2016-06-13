@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="arrangeMe.js"></script>
 		<title>Result</title>
 	</head>
-	<body onload="setup(3)">
+	<body onload="setup(2)" onkeydown="keyPressManager(event)">
 		<p id="title">Arrange Me</p>
 		<table id="gameBoard"> 
 		</table>
@@ -13,8 +13,6 @@
 		<p id="illegalMove" style="display: none">the block you clicked isn't coupled to an empty block. illegal switch</p>
 		<input type="button" id="scrumbleButton" value="scrumble" onclick="scrumbleBoard()"/>
 		<input type="button" id="undoButton" value="undo" onclick="undoAction()"/>
-
-
-
+		<img  id="hiddenImage" src="http://fc00.deviantart.net/fs70/f/2013/359/b/7/anime_quote__138_by_anime_quotes-d6zbr3w.jpg" style="display: none"/>
 	</body>
 </html>
