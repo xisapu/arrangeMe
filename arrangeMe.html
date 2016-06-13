@@ -5,10 +5,12 @@
 		<script type="text/javascript" src="arrangeMe.js"></script>
 		<title>Result</title>
 	</head>
-	<body onload="buildGameBoard(3)">
-		<h1 id="title">Arrange Me</h1>
-		<table id="gameBoard">
-
+	<body onload="setup(3)">
+		<p id="title">Arrange Me</p>
+		<table id="gameBoard"> 
 		</table>
+		<p id="winMessage" style="display: none">WIN!!</p>
+		<p id="illegalMove" style="display: none">the block you clicked isn't coupled to an empty block. illegal switch</p>
 	</body>
+	<input type="button" id="scrumbleButton" value="scrumble" onclick="scrumbleBoard()"/>
 </html>
