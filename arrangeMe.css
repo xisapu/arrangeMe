@@ -31,7 +31,10 @@
 
 .game_block {
 	background-image: url("http://www.redwoodhikes.com/BigBasin/BigBasin4.jpg");
+	transition: all .1s linear;
 	border: 1px solid;
+	-webkit-animation: mymove 1s; /* Chrome, Safari, Opera */
+    animation: mymove 1s;
 }
 
 
@@ -45,4 +48,12 @@
 
 .cropedImage {
 	position: static;
+}
+
+
+}
+
+button:active {
+  box-shadow: 0 2px 0 #006599;
+  transform: translateY(3px);
 }

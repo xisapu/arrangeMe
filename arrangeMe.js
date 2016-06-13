@@ -102,7 +102,9 @@ function moveBlock(cellObject) {
 		illegalMove.style.display = "none";
 		actions_history.push(empty_coupled_block_id);
 		var empty_coupled_block = document.getElementById(empty_coupled_block_id);
-		switchBlocksContent(cellObject, empty_coupled_block)
+		switchBlocksContent(cellObject, empty_coupled_block);
+		empty_coupled_block.style.transform = "translateY(3px)";
+		cellObject.style.transform = "translateY(3px)";
 		var winMessage = document.getElementById("winMessage");
 		var is_board_arranged = checkIfBoardIsArranged();
 		if (is_board_arranged) {
