@@ -7,7 +7,6 @@ function setup(number_of_blocks_in_side) {
 	var image = document.getElementById("hiddenImage");
 	table.style.width = image.width + "px";
 	table.style.height = image.height + "px";
-	//buildGameBoardWithImage(number_of_blocks_in_side);
 	buildGameBoardWithNumbers(number_of_blocks_in_side);
 	scrumbleBoard();
 }
@@ -34,45 +33,6 @@ function buildGameBoardWithNumbers(number_of_blocks_in_side) {
 	var empty_cell = table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1];
 	empty_cell.textContent = "";
 	empty_cell.style.backgroundImage = "None";
-}
-
-
-function buildGameBoardWithImage(number_of_blocks_in_side) {
-	var image = document.getElementById("hiddenImage");
-	var image_X_width = image.width;
-	var image_Y_height = image.height;
-	var block_X_size = image_X_width / number_of_blocks_in_side;
-	var block_Y_size = image_Y_height / number_of_blocks_in_side;
-	var FromX = 0;
-	var FromY = 0;
-	var ToX = block_X_size;
-	var ToY = block_Y_size;
-	var table = document.getElementById("gameBoard");
-	var counter = number_of_blocks_in_side * number_of_blocks_in_side;
-	for (var i = 0; i < number_of_blocks_in_side; i++) {
-		var row = table.insertRow(0);
-		var FromX = 0;
-		var ToX = block_X_size;
-		for (var j = 0; j < number_of_blocks_in_side; j++) {
-			var cell = row.insertCell(0);
-			cell.className = "game_block";
-			cell.id = counter;
-			cell.appendChild(document.createElement("img"))
-			var cellImage = cell.getElementsByTagName("img")[0];
-			cellImage.id = "i" + counter;
-			cellImage.className = "cropedImage";
-			cellImage.src = image_src;
-			var rect_string = "rect(" + FromY + "px, " + ToX + "px, " + ToY + "px, " + FromX + "px)";
-			cellImage.style.clip = "rect(" + FromY + "px, " + ToX + "px, " + ToY + "px, " + FromX + "px)";
-			cell.onclick = function() {moveBlock(this)};
-			FromX += block_X_size;
-			ToX += block_X_size;
-			counter--;
-		}
-		FromY += block_Y_size;
-		ToY += block_Y_size;
-	}
-	table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1].textContent = "";
 }
 
 
@@ -123,24 +83,6 @@ function getEmptyCoupledBlocksId(id) {
 
 
 function switchBlocksContent(block1, block2) {
-	/*var temp_block1_children = [];
-	var temp_block2_children = [];
-	for (var i = 0; i < block1.children.length; i++) {
-		temp_block1_children.push(block1.children[i])
-	}
-	for (var i = 0; i < block2.children.length; i++) {
-		temp_block2_children.push(block2.children[i])
-	}
-	var temp_text_content = block1.textContent;
-	block1.textContent = block2.textContent;
-	block2.textContent = temp_text_content;
-	for (var i = 0; i < block2.children.length; i++) {
-		block1.appendChild(block2.children[i]);
-	}
-
-	for (var i = 0; i < temp_block1_children.length; i++) {
-		block2.appendChild(temp_block1_children[i]);
-	}*/
 	var temp_text_content = block1.textContent;
 	block1.textContent = block2.textContent;
 	block2.textContent = temp_text_content;
