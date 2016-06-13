@@ -30,7 +30,7 @@
 }
 
 .game_block {
-	background-image: url("http://www.redwoodhikes.com/BigBasin/BigBasin4.jpg");
+	background-image: url("http://wallpaperyup.com/wp-content/uploads/2016/02/Epic-Anime-Awesome-Wallpapers.jpg");
 	transition: all .1s linear;
 	border: 1px solid;
 	-webkit-animation: mymove 1s; /* Chrome, Safari, Opera */
@@ -50,10 +50,18 @@
 	position: static;
 }
 
-
+#buttonDiv {
+	text-align: center;
 }
 
-button:active {
-  box-shadow: 0 2px 0 #006599;
-  transform: translateY(3px);
+.buttons {
+	margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+	width: 400px;
+	height: 150px;
+	font-size: 72px;
+	color: red;
+	background-color: blue;
 }

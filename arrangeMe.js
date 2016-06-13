@@ -1,5 +1,4 @@
 var actions_history = [];
-var image_src = "url ('http://www.redwoodhikes.com/BigBasin/BigBasin4.jpg')";
 
 
 function setup(number_of_blocks_in_side) {
@@ -22,23 +21,23 @@ function buildGameBoardWithNumbers(number_of_blocks_in_side) {
 			var cell = row.insertCell(0);
 			cell.className = "game_block";
 			cell.id = counter;
-			cell.textContent = counter;
+			cell.value = counter;
 			cell.onclick = function() {moveBlock(this)}
 			counter--;
-			cell.style.backgroundImage = image_src;
 			cell.style.backgroundPositionX = (100 - (j * percentage_for_background)) + "%";
 			cell.style.backgroundPositionY = (100 - (i * percentage_for_background)) + "%";;
 		}
 	}
 	var empty_cell = table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1];
 	empty_cell.textContent = "";
+	empty_cell.value = "";
 	empty_cell.style.backgroundImage = "None";
 }
 
 
 function checkIfBlockEmpty(id) {
 	var block = document.getElementById(id);
-	if ((block.textContent == "") && (block.children.length == 0)) {
+	if ((block.value === "") && (block.children.length === 0)) {
 		return true;
 	}
 	return false;
@@ -86,6 +85,9 @@ function switchBlocksContent(block1, block2) {
 	var temp_text_content = block1.textContent;
 	block1.textContent = block2.textContent;
 	block2.textContent = temp_text_content;
+	var temp_value = block1.value;
+	block1.value = block2.value;
+	block2.value = temp_value;
 	var temp_background_position = block1.style.backgroundPosition;
 	block1.style.backgroundPosition = block2.style.backgroundPosition;
 	block2.style.backgroundPosition = temp_background_position;
@@ -127,7 +129,7 @@ function checkIfBoardIsArranged() {
 	var number_of_cells = row_length * row_length;
 	for (var i = 1; i < number_of_cells; i++) {
 		var cell = document.getElementById(i);
-		if (cell.id !== cell.textContent) {
+		if (cell.id !== cell.value) {
 			return false;
 		}
 	}
@@ -220,7 +222,7 @@ function findEmptyBlockId() {
 	var number_of_cells = row_length * row_length;
 	for (var i = 1; i <= number_of_cells; i++) {
 		var block = document.getElementById(i);
-		if (block.textContent === "") {
+		if (block.value === "") {
 			return i;
 		}
 	}

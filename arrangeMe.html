@@ -5,14 +5,16 @@
 		<script type="text/javascript" src="arrangeMe.js"></script>
 		<title>Result</title>
 	</head>
-	<body onload="setup(2)" onkeydown="keyPressManager(event)">
+	<body onload="setup(3)" onkeydown="keyPressManager(event)">
 		<p id="title">Arrange Me</p>
 		<table id="gameBoard"> 
 		</table>
 		<p id="winMessage" style="display: none">WIN!!</p>
 		<p id="illegalMove" style="display: none">the block you clicked isn't coupled to an empty block. illegal switch</p>
-		<input type="button" id="scrumbleButton" value="scrumble" onclick="scrumbleBoard()"/>
-		<input type="button" id="undoButton" value="undo" onclick="undoAction()"/>
-		<img  id="hiddenImage" src="http://www.redwoodhikes.com/BigBasin/BigBasin4.jpg" style="display: none"/>
+		<div id="buttonDiv">
+			<input class="buttons" type="button" id="scrumbleButton" value="scrumble" onclick="scrumbleBoard()"/>
+			<input class="buttons" type="button" id="undoButton" value="undo" onclick="undoAction()"/>
+		</div>
+		<img  id="hiddenImage" src="http://wallpaperyup.com/wp-content/uploads/2016/02/Epic-Anime-Awesome-Wallpapers.jpg" style="display: none"/>
 	</body>
 </html>
