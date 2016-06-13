@@ -1,17 +1,22 @@
 var actions_history = [];
-var image_src = "http://fc00.deviantart.net/fs70/f/2013/359/b/7/anime_quote__138_by_anime_quotes-d6zbr3w.jpg";
+var image_src = "url ('http://www.redwoodhikes.com/BigBasin/BigBasin4.jpg')";
 
 
 function setup(number_of_blocks_in_side) {
-	buildGameBoardWithImage(number_of_blocks_in_side);
-	//buildGameBoardWithNumbers(number_of_blocks_in_side);
-	//scrumbleBoard();
+	var table = document.getElementById("gameBoard");
+	var image = document.getElementById("hiddenImage");
+	table.style.width = image.width + "px";
+	table.style.height = image.height + "px";
+	//buildGameBoardWithImage(number_of_blocks_in_side);
+	buildGameBoardWithNumbers(number_of_blocks_in_side);
+	scrumbleBoard();
 }
 
 
 function buildGameBoardWithNumbers(number_of_blocks_in_side) {
 	var table = document.getElementById("gameBoard");
 	var counter = number_of_blocks_in_side * number_of_blocks_in_side;
+	var percentage_for_background = 100 / (number_of_blocks_in_side - 1);
 	for (var i = 0; i < number_of_blocks_in_side; i++) {
 		var row = table.insertRow(0);
 		for (var j = 0; j < number_of_blocks_in_side; j++) {
@@ -21,9 +26,14 @@ function buildGameBoardWithNumbers(number_of_blocks_in_side) {
 			cell.textContent = counter;
 			cell.onclick = function() {moveBlock(this)}
 			counter--;
+			cell.style.backgroundImage = image_src;
+			cell.style.backgroundPositionX = (100 - (j * percentage_for_background)) + "%";
+			cell.style.backgroundPositionY = (100 - (i * percentage_for_background)) + "%";;
 		}
 	}
-	table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1].textContent = "";
+	var empty_cell = table.rows[number_of_blocks_in_side - 1].cells[number_of_blocks_in_side - 1];
+	empty_cell.textContent = "";
+	empty_cell.style.backgroundImage = "None";
 }
 
 
@@ -39,8 +49,6 @@ function buildGameBoardWithImage(number_of_blocks_in_side) {
 	var ToY = block_Y_size;
 	var table = document.getElementById("gameBoard");
 	var counter = number_of_blocks_in_side * number_of_blocks_in_side;
-	table.style.width = image.width + "px";
-	table.style.height = image.height + "px";
 	for (var i = 0; i < number_of_blocks_in_side; i++) {
 		var row = table.insertRow(0);
 		var FromX = 0;
@@ -70,7 +78,7 @@ function buildGameBoardWithImage(number_of_blocks_in_side) {
 
 function checkIfBlockEmpty(id) {
 	var block = document.getElementById(id);
-	if ((block.textContent == "") && (block.children == [])) {
+	if ((block.textContent == "") && (block.children.length == 0)) {
 		return true;
 	}
 	return false;
@@ -115,9 +123,33 @@ function getEmptyCoupledBlocksId(id) {
 
 
 function switchBlocksContent(block1, block2) {
+	/*var temp_block1_children = [];
+	var temp_block2_children = [];
+	for (var i = 0; i < block1.children.length; i++) {
+		temp_block1_children.push(block1.children[i])
+	}
+	for (var i = 0; i < block2.children.length; i++) {
+		temp_block2_children.push(block2.children[i])
+	}
 	var temp_text_content = block1.textContent;
 	block1.textContent = block2.textContent;
 	block2.textContent = temp_text_content;
+	for (var i = 0; i < block2.children.length; i++) {
+		block1.appendChild(block2.children[i]);
+	}
+
+	for (var i = 0; i < temp_block1_children.length; i++) {
+		block2.appendChild(temp_block1_children[i]);
+	}*/
+	var temp_text_content = block1.textContent;
+	block1.textContent = block2.textContent;
+	block2.textContent = temp_text_content;
+	var temp_background_position = block1.style.backgroundPosition;
+	block1.style.backgroundPosition = block2.style.backgroundPosition;
+	block2.style.backgroundPosition = temp_background_position;
+	var temp_background_image = block1.style.backgroundImage;
+	block1.style.backgroundImage = block2.style.backgroundImage;
+	block2.style.backgroundImage = temp_background_image;
 }
 
 
