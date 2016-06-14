@@ -65,3 +65,22 @@
 	color: red;
 	background-color: blue;
 }
+
+#settings {
+	text-align: center;
+}
+
+#settings p {
+	font-size: 50px;
+	font-family: Impact;
+	color: blue;
+	text-align: center;
+}
+
+.settingsButtons {
+	width: 200px;
+	height: 75px;
+	font-size: 36px;
+	color: red;
+	background-color: blue;
+}
